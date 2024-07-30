@@ -20,13 +20,14 @@ function reseller_func(){
             <h4>استان</h4>
             <?php
     // Get the terms
-    $provinces = get_terms('province', array(
+    $provinces = get_terms('seller_province', array(
         'hide_empty' => 0
     ));
     ?>
             <select id="ostan" name="ostan">
                 <option value="default">استان خود را از لیست زیر انتخاب کنید</option>
                 <?php
+                var_dump($provinces);
         foreach ($provinces as $province) {
             echo '<option value="';
             echo $province->slug;
@@ -3599,8 +3600,9 @@ Z"></path>
             <div id="city-menu">
                 <?php
                 if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
-                        $term1 = wp_get_object_terms($post->ID, 'province');
-                        $term = wp_get_object_terms($post->ID, 'city');
+                        global $post;
+                        $term1 = wp_get_object_terms($post->ID, 'seller_province');
+                        $term = wp_get_object_terms($post->ID, 'sellercity');
                 ?>
                         <ul id="<?php echo $term1[0]->slug; ?>" class="hide">
                             <li><a href="<?php echo $post->post_name; ?>"><?php echo $term[0]->name; ?> / <?php echo get_the_title($post->ID);  ?></a>
@@ -3618,7 +3620,7 @@ Z"></path>
             <div id="resaler-info">
                 <?php
                 if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
-                        $term = wp_get_object_terms($post->ID, 'province');
+                        $term = wp_get_object_terms($post->ID, 'seller_province');
                 ?>
                         <ul id="<?php echo $post->post_name; ?>" class="hide">
                             <?php if (!empty(get_the_title($post->ID))) : ?><li>نام مجموعه: <?php echo get_the_title($post->ID);  ?></li><?php endif; ?>
