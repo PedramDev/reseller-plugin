@@ -2,8 +2,8 @@
 add_shortcode("post_reseller", "postreseller_func");
 
 function postreseller_func(){
-    wp_enqueue_style('ssd_iranmap.css');
-    wp_enqueue_script('iranmap.min.js');
+    wp_enqueue_style('seller_iranmap.css');
+    wp_enqueue_script('seller_iranmap.js');
 
     $args = array(
         'post_type' => 'postresaler',

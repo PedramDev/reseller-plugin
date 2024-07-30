@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name: CustomSeller
- * Plugin URI: https://github.com/PedramDev/CustomSeller
- * Description: Custom seller , Usage : [reseller] , [post_reseller]
+ * Plugin Name: reseller plugin
+ * Plugin URI: https://github.com/PedramDev/reseller-plugin
+ * Description: Custom reseller , Usage : [reseller] , [post_reseller]
  * Version: 1.0
  * Author: Pedram Karimi
  * Author URI: https://github.com/PedramDev
- * Text Domain: custom-seller
+ * Text Domain: reseller-plugin
  */
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
@@ -17,8 +17,8 @@ if (!defined('ABSPATH')) {
 define('CustomSeller__PLUGIN_FILE', __FILE__);
 define('CustomSeller__VERSION', '1.0');
 
-    wp_register_style("ssd_iranmap.css", plugins_url( '/assets/css/iranmap.css', CustomSeller__PLUGIN_FILE ),[],CustomSeller__VERSION );
-    wp_register_script("iranmap.min.js", plugins_url( '/assets/js/iranmap.min.js', CustomSeller__PLUGIN_FILE ),['jquery'],CustomSeller__VERSION);
+    wp_register_style("seller_iranmap.css", plugins_url( '/assets/css/iranmap.css', CustomSeller__PLUGIN_FILE ),[],CustomSeller__VERSION );
+    wp_register_script("seller_iranmap.js", plugins_url( '/assets/js/iranmap.min.js', CustomSeller__PLUGIN_FILE ),['jquery'],CustomSeller__VERSION);
 
 
 
@@ -170,5 +170,5 @@ function create_resaler_city_taxonomies() {
 }
 
 
-require_once dirname(__FILE__) . '/postresaler-short-code';
-require_once dirname(__FILE__) . '/resaler-short-code';
+require_once dirname(__FILE__) . '/postresaler-short-code.php';
+require_once dirname(__FILE__) . '/resaler-short-code.php';
