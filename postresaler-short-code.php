@@ -3609,8 +3609,8 @@ Z"></path>
                             $term1 = wp_get_object_terms($post->ID, 'seller_province');
                             $term = wp_get_object_terms($post->ID, 'sellercity');
                     ?>
-                <ul id="<?php echo $term1[0]->slug; ?>" class="hide">
-                    <li><a href="<?php echo $post->post_name; ?>"><?php echo $term[0]->name; ?> /
+                <ul id="<?php echo 'view_' .$term1[0]->slug; ?>" class="hide">
+                    <li><a href="<?php echo $post->ID; ?>"><?php echo $term[0]->name; ?> /
                             <?php echo get_the_title($post->ID);  ?></a>
                     </li>
                 </ul>
@@ -3628,7 +3628,7 @@ Z"></path>
                     if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
                             $term = wp_get_object_terms($post->ID, 'seller_province');
                     ?>
-                <ul id="<?php echo $post->post_name; ?>" class="hide">
+                <ul id="<?php echo 'view_' . $post->ID; ?>" class="hide">
                     <?php if (!empty(get_the_title($post->ID))) : ?><li>نام مجموعه:
                         <?php echo get_the_title($post->ID);  ?></li><?php endif; ?>
                     <?php if (!empty(get_the_content($post->ID))) : ?><li>آدرس:

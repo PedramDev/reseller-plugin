@@ -4,7 +4,7 @@
  * Plugin Name: reseller plugin
  * Plugin URI: https://github.com/PedramDev/reseller-plugin
  * Description: Custom reseller , Usage : [reseller] , [post_reseller]
- * Version: 1.1
+ * Version: 1.3
  * Author: Pedram Karimi
  * Author URI: https://github.com/PedramDev
  * Text Domain: reseller-plugin
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 define('CustomSeller__PLUGIN_FILE', __FILE__);
-define('CustomSeller__VERSION', '1.1');
+define('CustomSeller__VERSION', '1.3');
 
 function CustomSellerAssets(){
     wp_register_style("seller_iranmap.css", plugins_url('/assets/css/iranmap.css', CustomSeller__PLUGIN_FILE), [], CustomSeller__VERSION);

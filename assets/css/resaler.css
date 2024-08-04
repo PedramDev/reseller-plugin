@@ -5,27 +5,24 @@
 
 #resaler h3 {
     font-size: 30px;
-    font-family: Gulf-Bold;
     color: #707070;
 }
 
 #resaler h2 {
     font-size: 45px;
-    font-family: Gulf-Bold;
     color: #ed1c24;
     margin: -12px 0 25px;
 }
 
 #resaler h4 {
     font-size: 26px;
-    font-family: Gulf-semibold;
     color: #0095be;
     margin: 55px 0 15px;
 }
 
 #resaler select {
     margin: 0;
-    font-family: IRANSans;
+    
 }
 
 #resaler .tal {
@@ -65,7 +62,7 @@
 
 #resaler p {
     font-size: 18px;
-    font-family: IRANSans;
+    
     color: #707070;
     text-align: justify;
     margin-bottom: 30px;
@@ -83,7 +80,7 @@
 #resaler form [type='text'], textarea {
     margin: 5px 0 20px;
     border-radius: 6px;
-    font-family: IRANSans;
+    
     font-size: 14px;
     box-sizing: inherit;
     display: inline-block;
@@ -95,7 +92,7 @@
     border-radius: 25px;
     color: #fff;
     padding: 8px 20px;
-    font-family: IRANSans;
+    
     font-size: 18px;
     background: #ed1c24;
     margin: 40px 0 0;
@@ -142,7 +139,7 @@
     border-bottom: 1px solid #d9d9d9;
     padding: 15px 0;
     margin: 0 30px;
-    font-family: IRANSans;
+    
 }
 
 #resaler #resaler-info ul li:last-child {
