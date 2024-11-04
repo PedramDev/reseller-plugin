@@ -1,9 +1,11 @@
 <?php
 add_shortcode("reseller", "reseller_func");
 
-function reseller_func(){
-    wp_enqueue_style('ssd_iranmap.css');
-    wp_enqueue_script('iranmap.min.js');
+function reseller_func()
+{
+    wp_enqueue_style('seller_iranmap.css');
+    wp_enqueue_style('seller_resaler.css');
+    wp_enqueue_script('seller_iranmap.js');
 
     $args = array(
         'post_type' => 'resaler',
@@ -13,28 +15,30 @@ function reseller_func(){
     );
     /* The 2nd Query (without global var) */
     $query = new WP_Query($args);
-    ?>
+?>
 
-<div class="row">
-<div class="small-10 small-push-1 medium-5 column pr">
+<div id="resaler">
+    <div class="row">
+        <div class="small-10 small-push-1 medium-5 column pr">
             <h4>استان</h4>
             <?php
-    // Get the terms
-    $provinces = get_terms('province', array(
-        'hide_empty' => 0
-    ));
-    ?>
+                // Get the terms
+                $provinces = get_terms('seller_province', array(
+                    'hide_empty' => 0
+                ));
+                ?>
             <select id="ostan" name="ostan">
                 <option value="default">استان خود را از لیست زیر انتخاب کنید</option>
                 <?php
-        foreach ($provinces as $province) {
-            echo '<option value="';
-            echo $province->slug;
-            echo '">';
-            echo $province->name;
-            echo '</option>';
-        }
-        ?>
+                    var_dump($provinces);
+                    foreach ($provinces as $province) {
+                        echo '<option value="';
+                        echo $province->slug;
+                        echo '">';
+                        echo $province->name;
+                        echo '</option>';
+                    }
+                    ?>
             </select>
 
 
@@ -45,7 +49,9 @@ function reseller_func(){
             <div id="IranMap" class="clear">
                 <div class="map">
                     <span class="show-title" style="display: none; left: 164.4px; top: 117.462px;"></span>
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="20 0 970 960" enable-="enable-" background="new 20 0 970 960" xml:space="preserve" style="height: 312px; width: 312px;">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0" y="0" viewBox="20 0 970 960" enable-="enable-" background="new 20 0 970 960"
+                        xml:space="preserve" style="height: 312px; width: 312px;">
                         <g class="border">
                             <path class="iran" d=" M 47.30 9.20 C 49.99 6.70 53.00 4.52 56.50 3.29 C 58.03 5.13 59.38 7.20 61.34 8.63 C 63.19
 
@@ -2127,7 +2133,8 @@ Z"></path>
 549.92 379.25 547.23 379.82 544.60 C 381.24 538.24 385.25 532.81 386.68 526.44 C 387.38 522.59 387.11 518.66 387.12 514.77 C 383.72
 
 513.59
-380.05 513.01 376.92 511.20 C 375.89 509.52 375.36 507.61 374.67 505.80 C 378.16 507.61 381.82 509.18 385.80 509.42 Z"></path>
+380.05 513.01 376.92 511.20 C 375.89 509.52 375.36 507.61 374.67 505.80 C 378.16 507.61 381.82 509.18 385.80 509.42 Z">
+                            </path>
                             <path class="gilan" data_tab="tab21" d=" M 238.05 99.24 C 242.32 99.21 246.58 98.88 250.80 98.14 C 249.97 107.72 250.94
 117.36 252.44 126.83 C 253.70 132.78 254.49 139.42 258.95 143.98 C 262.90 147.98 267.95 150.65 272.84 153.33 C 283.57 158.81 296.29
 
@@ -3598,43 +3605,49 @@ Z"></path>
         <div class="small-10 small-push-1 medium-5 column">
             <div id="city-menu">
                 <?php
-                if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
-                        $term1 = wp_get_object_terms($post->ID, 'province');
-                        $term = wp_get_object_terms($post->ID, 'city');
-                ?>
-                        <ul id="<?php echo $term1[0]->slug; ?>" class="hide">
-                            <li><a href="<?php echo $post->post_name; ?>"><?php echo $term[0]->name; ?> / <?php echo get_the_title($post->ID);  ?></a>
-                            </li>
-                        </ul>
+                    if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
+                            global $post;
+                            $term1 = wp_get_object_terms($post->ID, 'seller_province');
+                            $term = wp_get_object_terms($post->ID, 'sellercity');
+                    ?>
+                <ul id="<?php echo $term1[0]->slug; ?>" class="hide">
+                    <li><a href="<?php echo 'view_'.$post->ID; ?>"><?php echo $term[0]->name; ?> /
+                            <?php echo get_the_title($post->ID);  ?></a>
+                    </li>
+                </ul>
                 <?php
-                    endwhile;
-                    wp_reset_postdata();
-                endif;
-                ?>
+                        endwhile;
+                        wp_reset_postdata();
+                    endif;
+                    ?>
             </div>
         </div>
 
         <div class="small-10 small-push-1 medium-5 column end">
             <div id="resaler-info">
                 <?php
-                if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
-                        $term = wp_get_object_terms($post->ID, 'province');
-                ?>
-                        <ul id="<?php echo $post->post_name; ?>" class="hide">
-                            <?php if (!empty(get_the_title($post->ID))) : ?><li>نام مجموعه: <?php echo get_the_title($post->ID);  ?></li><?php endif; ?>
-                            <?php if (!empty(get_the_content($post->ID))) : ?><li>آدرس: <?php echo get_the_content($post->ID);  ?></li><?php endif; ?>
-                            <?php if (!empty(get_post_meta($post->ID, 'resaler_tel', true))) : ?><li>شماره تماس: <?php echo get_post_meta($post->ID, 'resaler_tel', true); ?></li><?php endif; ?>
-                            <?php if (!empty(get_post_meta($post->ID, 'resaler_admin', true))) : ?><li>مدیر مسئول: <?php echo get_post_meta($post->ID, 'resaler_admin', true); ?></li><?php endif; ?>
-                        </ul>
+                    if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
+                            $term = wp_get_object_terms($post->ID, 'seller_province');
+                    ?>
+                <ul id="<?php echo 'view_'.$post->ID; ?>" class="hide">
+                    <?php if (!empty(get_the_title($post->ID))) : ?><li>نام مجموعه:
+                        <?php echo get_the_title($post->ID);  ?></li><?php endif; ?>
+                    <?php if (!empty(get_the_content($post->ID))) : ?><li>آدرس:
+                        <?php echo get_the_content($post->ID);  ?></li><?php endif; ?>
+                    <?php if (!empty(get_post_meta($post->ID, 'resaler_tel', true))) : ?><li>شماره تماس:
+                        <?php echo get_post_meta($post->ID, 'resaler_tel', true); ?></li><?php endif; ?>
+                    <?php if (!empty(get_post_meta($post->ID, 'resaler_admin', true))) : ?><li>مدیر مسئول:
+                        <?php echo get_post_meta($post->ID, 'resaler_admin', true); ?></li><?php endif; ?>
+                </ul>
                 <?php
-                    endwhile;
-                    wp_reset_postdata();
-                endif;
-                ?>
+                        endwhile;
+                        wp_reset_postdata();
+                    endif;
+                    ?>
             </div>
         </div>
     </div>
+</div>
 
-
-<?php 
+<?php
 }
